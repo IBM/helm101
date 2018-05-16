@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  guestbook:
+  - apiVersion: v1
+    created: 2018-05-10T21:50:41.837568406-04:00
+    description: A Helm chart to deploy Guestbook three tier web application.
+    digest: 25da3e4d75a0e0e51426fc53b72f1ee0769a8f00e776a621e2205cffbfe4dc98
+    name: guestbook
+    urls:
+    - https://raw.githubusercontent.com/ibm/helm101/master/repo/stable/guestbook-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-05-10T21:50:41.83648523-04:00
