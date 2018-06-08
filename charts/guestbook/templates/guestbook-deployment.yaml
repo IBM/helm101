@@ -6,7 +6,11 @@ metadata:
     app: {{ template "guestbook.name" . }}
     release: {{ .Release.Name }}
 spec:
+{{ if .Values.replicaNum.enabled }}
+  replicas: {{ .Values.replicaNum.desired }}
+{{ else }}
   replicas: 3
+{{ end }}
   selector:
     matchLabels:
       app: guestbook
