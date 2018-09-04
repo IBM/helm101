@@ -6,5 +6,9 @@ image:
   tag: v1
   pullPolicy: Always
 
+replicaNum:
+  desired: 2
+  enabled: true
+
 # For minikube you may want to set serviceType from LoadBalancer to NodePort
 serviceType: LoadBalancer
