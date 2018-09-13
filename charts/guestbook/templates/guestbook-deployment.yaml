@@ -25,4 +25,4 @@ spec:
         ports:
         - name: http-server
           containerPort: 3000
-        imagePullPolicy: {{ .Values.pullPolicy }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
