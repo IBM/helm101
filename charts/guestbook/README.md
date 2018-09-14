@@ -6,16 +6,21 @@ The chart installs a [guestbook](https://github.com/IBM/guestbook/tree/master/v1
 
 ## Installing the Chart
 
+Add the repository to your local environment:
+```bash
+$ helm repo add my-repo https://ibm.github.io/helm101/
+```
+
 To install the chart with the default release name:
 
 ```bash
-$ helm install charts/guestbook
+$ helm install my-repo/guestbook
 ```
 
 To install the chart with your preference of release name, for example, `my-release`:
 
 ```bash
-$ helm install --name my-release charts/guestbook
+$ helm install my-repo/guestbook --name my-release
 ```
 
 ### Uninstalling the Chart
@@ -39,8 +44,8 @@ The following tables lists the configurable parameters of the chart and their de
 | `image.pullPolicy`         | Image pull policy                               | `Always`                                                   |
 | `serviceType`              | Service type                                    | `LoadBalancer`                                             |
 
-Specify each parameter using the `--set [key=value]` argument to `helm install`. For exampme,
+Specify each parameter using the `--set [key=value]` argument to `helm install`. For example,
 
 ```bash
-$ helm install --set serviceType=NodePort charts/guestbook
+$ helm install my-repo/guestbook --set serviceType=NodePort
 ```
