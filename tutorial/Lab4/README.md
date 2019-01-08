@@ -1,14 +1,14 @@
 # Lab 4. I like sharing
 
-A key aspect of providing an application is a means to be able to share. Sharing can be direct counsumption (by users or in CI/CD pipelines) or as dependency for other charts. If people can't find your app then they can't use it.
+A key aspect of providing an application means sharing with others. Sharing can be direct counsumption (by users or in CI/CD pipelines) or as a dependency for other charts. If people can't find your app then they can't use it.
 
-A means of sharing is a chart repository which is a location where packaged charts can be stored and shared. As the chart repository only applies to Helm, we will therefore just look at the usage and storage of Helm charts.
+A means of sharing is a chart repository, which is a location where packaged charts can be stored and shared. As the chart repository only applies to Helm, we will just look at the usage and storage of Helm charts.
 
 # Using charts from a public repository
 
 Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Helm Charts](https://github.com/helm/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://github.com/helm/helm/blob/master/docs/chart_repository.md) for more details. 
 
-In this part of the lab we show how to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/). 
+In this part of the lab, we show you how to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/).
 
 1. Check the repositories configured on your system:
 
@@ -24,7 +24,7 @@ In this part of the lab we show how to install the `guestbook` chart from the [H
    
    Note: The Helm charts repository is installed by default with Helm. It is installed with the repo name `stable` and located at `https://kubernetes-charts.storage.googleapis.com/`.
 
-2. Add `helm101` repo
+2. Add `helm101` repo:
 
    ```helm repo add helm101 https://ibm.github.io/helm101/```
    
@@ -83,5 +83,4 @@ In this part of the lab we show how to install the `guestbook` chart from the [H
    
 # Conclusion
 
-This lab provided a brief introduction to the Helm respositories to show how charts can be installed. The ability to be able to share your chart means ease of use to you and your consumers.
-
+This lab provided you with a brief introduction to the Helm repositories to show how charts can be installed. The ability to share your chart means ease of use to both you and your consumers.

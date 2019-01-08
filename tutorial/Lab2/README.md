@@ -1,18 +1,18 @@
 # Lab 2. I need to change but none of the hassle
 
-In [Lab 1](../Lab1/README.md) we installed the app. You are probably now thinking, I am done. In most circumstances that would be correct but what about any updates or improvements to the chart. How do you update your running app to pick up these changes? 
+In [Lab 1](../Lab1/README.md), we installed the guestbook sample app by using Helm and saw the benefits over using `kubectl`. You probably think that you're done and know enough to use Helm. But what about updates or improvements to the chart? How do you update your running app to pick up these changes? 
 
-In this lab we are going to look at how to update our running app when the chart has been changed. To be able to demonstrate this we are going to make changes to the original `guestbook` chart as follows: 
-* Remove the Redis slaves and therefore just use the in-memory DB
-* Change from `LoadBalancer` type to `NodePort` type
+In this lab, we're going to look at how to update our running app when the chart has been changed. To demonstrate this, we're going to make changes to the original `guestbook` chart by:
+* Removing the Redis slaves and using just the in-membory DB
+* Changing the type from `LoadBalancer` to `NodePort`.
 
-It is slightly contrived but the end goal here is to show how to update using Kubernetes directly and Helm. So, how easy is it to do this? 
+It seems contrived but the goal of this lab is to show you how to update your apps with Kubernetes and Helm. So, how easy is it to do this? Let's take a look below.
 
 # Update the application using `kubectl`
 
-In this part of the lab we will update the previously deployed application `guestbook`, using Kubernetes directly.
+In this part of the lab we will update the previously deployed application [Guestbook](https://github.com/IBM/guestbook), using Kubernetes directly.
 
-1. This is an optional step in that it is not necessary to update your running app. The reason for doing this step is "house keeping" - you want to have the correct files for the current configuration that you have deployed. This avoids making mistakes if you have future updates or even rollbacks. In this updated configuration, we remove the Redis slaves. That is why you should move/archive or remove the Redis slave files to keep abreast of the update:
+1. This is an optional step, that it is not necessary to update your running app. The reason for doing this step is "house keeping" - you want to have the correct files for the current configuration that you have deployed. This avoids making mistakes if you have future updates or even rollbacks. In this updated configuration, we remove the Redis slaves. That is why you should move/archive or remove the Redis slave files to keep abreast of the update:
 
    ```
    redis-slave-service.yaml
@@ -30,17 +30,23 @@ In this part of the lab we will update the previously deployed application `gues
 
 3. Update the guestbook service from `LoadBalancer` to `NodePort` type:
 
-   ```$ sed -i.bak 's/LoadBalancer/NodePort/g' guestbook-service.yaml```
+   ```console
+   $ sed -i.bak 's/LoadBalancer/NodePort/g' guestbook-service.yaml
+   ```
 
-   Note: Like in Step 1., you may want to archive before making the changes..
+   Note: Like in Step 1, you may want to archive before making the changes.
    
 4. Delete the guestbook service:
     
-    ```$ kubectl delete svc guestbook --namespace default```
+    ```console
+    $ kubectl delete svc guestbook --namespace default
+    ```
     
-5. Recreate the service with `NodePort` type:
+5. Re-create the service with `NodePort` type:
 
-    ```$ kubectl create -f guestbook-service.yaml```
+    ```console
+    $ kubectl create -f guestbook-service.yaml
+    ```
     
 6. To check the updates, you can run ```kubectl get all --namespace default```:
     
@@ -67,23 +73,23 @@ In this part of the lab we will update the previously deployed application `gues
     Note: The service type has changed (to `NodePort`) and a new port has been allocated (`31989` in this output case) to the guestbook 
     service. All `redis-slave` resources have been removed.
 
-5. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service
+5. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service.
    
 # Update the application using Helm
 
-In this part of the lab we will update the previously deployed application `guestbook-demo`, using Helm.
+In this section, we'll update the previously deployed `guestbook-demo` application by using Helm.
 
-Before we start, let's take a few minutes to see how does Helm simplify the process compared to using Kubernetes directly. Helms' use of a [template language](https://docs.helm.sh/chart_template_guide/) provides great flexibility and power to chart authors which removes the complexity to the chart user. In the guestbook example, we are using the following capabilities of templating:
-* Values: which is an object that provides access to values passed into the chart. An example of this is in `guestbook-service` which contains the following line: ```type: {{ .Values.service.type }}```. The line provides the capability to set the service type during upgrade or install.
-* Control structures: (called “actions” in template parlance) provides the template author with the ability to control the flow of a template’s generation. An example of this is in `redis-slave-service` which contains the following line: ```{{- if .Values.redis.slaveEnabled -}}```. The line provides the capability to enable/disable the REDIS master/slave during upgrade or install.
+Before we start, let's take a few minutes to see how Helm simplifies the process compared to using Kubernetes. Helm's use of a [template language](https://docs.helm.sh/chart_template_guide/) provides great flexibility and power to chart authors, which removes the complexity to the chart user. In the guestbook example, we'll use the following capabilities of templating:
+* Values: An object that provides access to the values passed into the chart. An example of this is in `guestbook-service`, which contains the line `type: {{ .Values.service.type }}`. This line provides the capability to set the service type during an upgrade or install.
+* Control structures: Also called “actions” in template parlance, control structures provide the template author with the ability to control the flow of a template’s generation. An example of this is in `redis-slave-service`, which contains the line `{{- if .Values.redis.slaveEnabled -}}`. This line allows us to enable/disable the REDIS master/slave during an upgrade or install.
 
-Theory over, let's give it a go!
+Enough talking about the theory. Now let's give it a go!
 
-1. Update the application
+1. Update the application:
 
     ```helm upgrade guestbook-demo ./guestbook --set redis.slaveEnabled=false,service.type=NodePort --namespace helm-demo```
     
-    Helm upgrade takes an existing release and upgrades it according to the information you provide. You should see output similar to the following:
+    A Helm upgrade takes an existing release and upgrades it according to the information you provide. You should see output similar to the following:
     
     ```console
     Release "guestbook-demo" has been upgraded. Happy Helming!
@@ -116,8 +122,7 @@ Theory over, let's give it a go!
     echo http://$NODE_IP:$NODE_PORT
     ```
     
-    The `upgrade` command upgrades the app to a specified version of a chart, removes the `redis-slave` resources and updates the app 
-    `service.type` to `NodePort`.
+    The `upgrade` command upgrades the app to a specified version of a chart, removes the `redis-slave` resources, and updates the app `service.type` to `NodePort`.
         
     To check the updates, you can run ```kubectl get all --namespace helm-demo```
     
@@ -139,13 +144,12 @@ Theory over, let's give it a go!
     replicaset.apps/guestbook-demo-6c9cf8b9   2         2         2         1h
     replicaset.apps/redis-master-5d8b66464f   1         1         1         1h
     ```
-    Note: The service type has changed (to `NodePort`) and a new port has been allocated (`31202` in this output case) to the guestbook 
-    service. All `redis-slave` resources have been removed.
+    Note: The service type has changed (to `NodePort`) and a new port has been allocated (`31202` in this output case) to the guestbook service. All `redis-slave` resources have been removed.
     
-2. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service
+2. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service.
 
 # Conclusion
 
-Congratulations, you have now updated the applications! This is a "no brainer"; Helm does not require any manual changing of resouces and is therefore so much easier to upgrade! All configuration can be set on the fly on the command line or using override files. This is made possible by the upfront work done when the logic is added to the template files which enables or disables capability depending on the flag set.
+Congratulations, you have now updated the applications! Helm does not require any manual changing of resources and is therefore so much easier to upgrade! All configurations can be set on the fly on the command line or by using override files. This is made possible from when the logic was added to the template files, which enables or disables the capability, depending on the flag set.
 
-Why not check out [Lab 3](../Lab3/README.md) next, to get an insight into revision management.
+Check out [Lab 3](../Lab3/README.md) to get an insight into revision management.

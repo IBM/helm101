@@ -1,10 +1,10 @@
 # Lab 0. Installing Helm on IBM Cloud Kubernetes Service
 
-There are two parts to installing Helm: the client (helm) and the server (Tiller). Helm can be installed from source or pre-built binary releases. In this lab we are going to use the pre-built binary release (Linux amd64) from the Helm community. Refer to the [Helm install docs](https://docs.helm.sh/using_helm/#install-helm) for more details. 
+There are two parts to installing Helm: the client (helm) and the server (Tiller). Helm can be installed from source or pre-built binary releases. In this lab, we are going to use the pre-built binary release (Linux amd64) from the Helm community. Refer to the [Helm install docs](https://docs.helm.sh/using_helm/#install-helm) for more details. 
 
 # Prerequisites
 
-Create a Kubernetes cluster with [IBM Cloud Kubernetes Service](https://console.bluemix.net/docs/containers/cs_tutorials.html), following the steps to also configure the IBM Cloud CLI with the Kubernetes Service plug-in.
+Create a Kubernetes cluster with [IBM Cloud Kubernetes Service](https://cloud.ibm.com/docs/containers/cs_tutorials.html#cs_cluster_tutorial), following the steps to also configure the IBM Cloud CLI with the Kubernetes Service plug-in.
 
 # Installing the Helm Client (helm)
 

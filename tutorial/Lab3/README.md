@@ -1,22 +1,24 @@
 # Lab 3. Keeping track of the deployed application
 
-Lets say you have deployed different release versions of your application (i.e. you upgraded the running application). How do you keep track of the versions and how can you do a rollback?
+Let's say you deployed different release versions of your application (i.e., you upgraded the running application). How do you keep track of the versions and how can you do a rollback?
 
-# Revision management using Kubernetes directly
+# Revision management using Kubernetes
 
-In this part of the lab we should illustrate revision management of `guestbook`, using Kubernetes directly. Unfortunately, Kubernetes does not provide any support for revision management. The onus is on you to provide management of your systems and any updates or changes you make.
+In this part of the lab, we should illustrate revision management of `guestbook` by using Kubernetes directly, but we can't. This is because Kubernetes does not provide any support for revision management. The onus is on you to manage your systems and any updates or changes you make. However, we can use Helm to conduct revision management.
 
 # Revision management using Helm
 
-In this part of the lab we illustrate revision management on the deployed application `guestbook-demo`, using Helm.
+In this part of the lab, we illustrate revision management on the deployed application `guestbook-demo` by using Helm.
 
-With Helm every time an install, upgrade, or rollback happens, the revision number is incremented by 1. The first revision number is always 1. Helm persists release metadata in configmaps, stored in the Kubernetes cluster. Everytime your release changes, it appends that to the existing data. This provides Helm with the capability to rollback to a previous release.
+With Helm, every time an install, upgrade, or rollback happens, the revision number is incremented by 1. The first revision number is always 1. Helm persists release metadata in configmaps, stored in the Kubernetes cluster. Every time your release changes, it appends that to the existing data. This provides Helm with the capability to rollback to a previous release.
 
 Let's see how this works in practice.
 
-1. Check the number of deployments
+1. Check the number of deployments:
 
-    ```$ helm history guestbook-demo```
+    ```console
+    $ helm history guestbook-demo
+    ```
     
     You should see output similar to the following because we did an upgrade in [Lab 2](../Lab2/README.md) after the initial install in [Lab 1](../Lab1/README.md):
     
@@ -26,7 +28,7 @@ Let's see how this works in practice.
     2       	Mon Sep 24 10:36:18 2018	DEPLOYED  	guestbook-0.1.0	Upgrade complete
     ```
         
-2. Rollback to previous revision
+2. Roll back to the previous revision:
 
     In this rollback, Helm checks the changes that occured when upgrading from the revision 1 to revision 2. This information enables it to makes the calls to the Kubernetes API server, to update the deployed application as per the initial deployment - in other words with Redis slaves and using a load balancer.
 
@@ -35,7 +37,7 @@ Let's see how this works in practice.
     ```console
     Rollback was a success! Happy Helming!
     ```
-    Check the history again, ```helm history guestbook-demo```
+    Check the history again, `helm history guestbook-demo`
     
     You should see output similar to the following:
     
@@ -46,7 +48,7 @@ Let's see how this works in practice.
     3       	Mon Sep 24 11:59:18 2018	DEPLOYED  	guestbook-0.1.0	Rollback to 1
     ```
     
-    To check the rollback, you can run ```kubectl get all --namespace helm-demo```:
+    To check the rollback, you can run `kubectl get all --namespace helm-demo`:
     
     ```console
     NAME                                READY     STATUS    RESTARTS   AGE
@@ -71,12 +73,12 @@ Let's see how this works in practice.
     replicaset.apps/redis-master-5d8b66464f   1         1         1         3h
     replicaset.apps/redis-slave-586b4c847c    2         2         2         2m
     ```
-    
-    You can see from the output that the app service is service type of `LoadBalancer` again and Redis master/slave deployment has returned. 
+   
+    You can see from the output that the app service is the service type of `LoadBalancer` again and the Redis master/slave deployment has returned. 
     This shows a complete rollback from the upgrade in [Lab 2](../Lab2/README.md) 
 
 # Conclusion
 
-What can I say but Helm does revision management well and Kubernetes does not have the capability built-in!
+From this lab, we can say that Helm does revision management well and Kubernetes does not have the capability built in!
 
 [Lab 4](../Lab4/README.md) awaits.

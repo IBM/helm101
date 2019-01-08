@@ -4,7 +4,7 @@
 
 # Objectives
 
-These labs provide an insight on the advantages of using Helm instead of using Kubernetes directly through `kubectl`. By the end of this course, you'll:
+These labs provide an insight on the advantages of using Helm over using Kubernetes directly through `kubectl`. When you complete all the labs, you'll:
 * Understand the core concepts of Helm
 * Understand the advantages of deployment using Helm over Kubernetes directly, looking at:
   * Application management
@@ -13,14 +13,14 @@ These labs provide an insight on the advantages of using Helm instead of using K
   * Revision management
   * Repositories and chart sharing
 
-# Prerequesites
+# Prerequisites
 
-* Have a running Kubernetes cluster. See the [IBM Cloud Kubernetes Service](https://console.bluemix.net/docs/containers/cs_tutorials.html) or [Kubernetes Getting Started Guide](https://kubernetes.io/docs/setup/) for details about creating a cluster.
+* Have a running Kubernetes cluster. See the [IBM Cloud Kubernetes Service](https://cloud.ibm.com/docs/containers/cs_tutorials.html#cs_cluster_tutorial) or [Kubernetes Getting Started Guide](https://kubernetes.io/docs/setup/) for details about creating a cluster.
 * Have Helm installed and initialized with the Kubernetes cluster. See [Installing Helm on IBM Cloud Kubernetes Service](Lab0/README.md) or the [Helm Quickstart Guide](https://docs.helm.sh/using_helm/#quickstart) for getting started with Helm.
 
 # Helm Overview
 
-Helm is a tool that streamlines installation and management of Kubernetes applications. It uses a packaging format called charts which are a collection of files that describe Kubernetes resources. It can run anywhere (laptop, CI/CD etc.) and is available for various operating systems, like OSX, Linux and Windows. 
+Helm is a tool that streamlines installation and management of Kubernetes applications. It uses a packaging format called "charts", which are a collection of files that describe Kubernetes resources. It can run anywhere (laptop, CI/CD, etc.) and is available for various operating systems, like OSX, Linux and Windows.
 
 ![helm-architecture](images/helm-architecture.png)
 
@@ -31,7 +31,7 @@ The chart repository is a location where packaged charts can be stored and share
 
 # Helm Abstractions
 
-Helm defines 
+Helm terms :
 * Chart - It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster. A chart is basically a package of pre-configured Kubernetes resources.
 * Config - Contains configuration information that can be merged into a packaged chart to create a releasable object.
 * helm - Helm client. Communicates to Tiller through the Helm API - [HAPI](https://docs.helm.sh/developers/#the-helm-api-hapi) which uses [gRPC](https://grpc.io/).
