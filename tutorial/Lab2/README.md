@@ -79,9 +79,30 @@ In this part of the lab we will update the previously deployed application [Gues
 
 In this section, we'll update the previously deployed `guestbook-demo` application by using Helm.
 
-Before we start, let's take a few minutes to see how Helm simplifies the process compared to using Kubernetes. Helm's use of a [template language](https://docs.helm.sh/chart_template_guide/) provides great flexibility and power to chart authors, which removes the complexity to the chart user. In the guestbook example, we'll use the following capabilities of templating:
+Before we start, let's take a few minutes to see how Helm simplifies the process compared to using Kubernetes directly. Helm's use of a [template language](https://docs.helm.sh/chart_template_guide/) provides great flexibility and power to chart authors, which removes the complexity to the chart user. In the guestbook example, we'll use the following capabilities of templating:
 * Values: An object that provides access to the values passed into the chart. An example of this is in `guestbook-service`, which contains the line `type: {{ .Values.service.type }}`. This line provides the capability to set the service type during an upgrade or install.
 * Control structures: Also called “actions” in template parlance, control structures provide the template author with the ability to control the flow of a template’s generation. An example of this is in `redis-slave-service`, which contains the line `{{- if .Values.redis.slaveEnabled -}}`. This line allows us to enable/disable the REDIS master/slave during an upgrade or install.
+
+The complete `redis-slave-service.yaml` file shown below, demonstrates how the file becomes redundant when the `slaveEnabled` flag is disabled and also how the port value is set.
+
+```
+{{- if .Values.redis.slaveEnabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-slave
+  labels:
+    app: redis
+    role: slave
+spec:
+  ports:
+  - port: {{ .Values.redis.port }}
+    targetPort: redis-server
+  selector:
+    app: redis
+    role: slave
+{{- end }}
+```
 
 Enough talking about the theory. Now let's give it a go!
 
@@ -116,10 +137,10 @@ Enough talking about the theory. Now let's give it a go!
     
     
     NOTES:
-    Get the application URL by running these commands:
-    export NODE_PORT=$(kubectl get --namespace helm-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-demo)
-    export NODE_IP=$(kubectl get nodes -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address})
-    echo http://$NODE_IP:$NODE_PORT
+    1. Get the application URL by running these commands:
+      export NODE_PORT=$(kubectl get --namespace helm-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-demo)
+      export NODE_IP=$(kubectl get nodes --namespace helm-demo -o jsonpath="{.items[0].status.addresses[0].address}")
+      echo http://$NODE_IP:$NODE_PORT
     ```
     
     The `upgrade` command upgrades the app to a specified version of a chart, removes the `redis-slave` resources, and updates the app `service.type` to `NodePort`.

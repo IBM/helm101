@@ -22,7 +22,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    local 	http://127.0.0.1:8879/charts                   
    ```
    
-   Note: The Helm charts repository is installed by default with Helm. It is installed with the repo name `stable` and located at `https://kubernetes-charts.storage.googleapis.com/`.
+   Note: The Helm charts repository is installed by default with Helm. It is installed with the repositories `local` and `stable`. You can run the `local` repo using the [helm serve](https://github.com/helm/helm/blob/master/docs/helm/helm_serve.md) command. The `stable` repo is located at `https://kubernetes-charts.storage.googleapis.com/`.
 
 2. Add `helm101` repo:
 

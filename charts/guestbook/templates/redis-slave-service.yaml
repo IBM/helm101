@@ -1,3 +1,4 @@
+{{- if .Values.redis.slaveEnabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,8 +8,9 @@ metadata:
     role: slave
 spec:
   ports:
-  - port: 6379
+  - port: {{ .Values.redis.port }}
     targetPort: redis-server
   selector:
     app: redis
     role: slave
+{{- end }}

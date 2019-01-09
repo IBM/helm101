@@ -7,7 +7,7 @@ metadata:
     role: master
 spec:
   ports:
-  - port: 6379
+  - port: {{ .Values.redis.port }}
     targetPort: redis-server
   selector:
     app: redis

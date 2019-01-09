@@ -1,4 +1,0 @@
-Get the application URL by running these commands:
-export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "guestbook.fullname" . }})
-export NODE_IP=$(kubectl get nodes -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address})
-echo http://$NODE_IP:$NODE_PORT

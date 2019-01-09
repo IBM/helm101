@@ -1,6 +1,6 @@
 # Why Helm?
 
-[Helm](https://docs.helm.sh/) is often described as the Kubernetes application package manager. So, what does Helm give you over using Kubernetes directly?
+[Helm](https://docs.helm.sh/) is often described as the Kubernetes application package manager. So, what does Helm give you over using kubectl directly?
 
 # Objectives
 
@@ -26,7 +26,8 @@ Helm is a tool that streamlines installation and management of Kubernetes applic
 
 It has a client-server architecture with the client called `helm` and the server called `Tiller`. The client is a CLI which users interact with to perform different operations like install/upgrade/delete etc. The client interacts with Tiller and the chart repository. Tiller interacts with the Kubernetes API server. It renders Helm template files into Kubernetes manifest files which it uses to perform operations on the Kubernetes cluster via the Kubernetes API. See the [Helm Architecture](https://docs.helm.sh/architecture/) for more details. 
 
-A [chart](https://docs.helm.sh/developing_charts) is organized as a collection of files inside of a directory where the directory name is the name of the chart. It contains template YAML files which facilitates providing configuration values at runtime and eliminates the need of modifying YAML files. These templates provide programming logic as they are based on the "Go template language", functions from the “Sprig” lib and other specialized functions.  
+A [chart](https://docs.helm.sh/developing_charts) is organized as a collection of files inside of a directory where the directory name is the name of the chart. It contains template YAML files which facilitates providing configuration values at runtime and eliminates the need of modifying YAML files. These templates provide programming logic as they are based on the [Go template language](https://golang.org/pkg/text/template/), functions from the [Sprig lib](https://github.com/Masterminds/sprig) and other [specialized functions](https://docs.helm.sh/developing_charts/#chart-development-tips-and-tricks).
+
 The chart repository is a location where packaged charts can be stored and shared. This is akin to the image repository in Docker. Refer to [The Chart Repository Guide](https://github.com/helm/helm/blob/master/docs/chart_repository.md) for more details.
 
 # Helm Abstractions
