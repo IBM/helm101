@@ -10,7 +10,7 @@ Create a Kubernetes cluster with [IBM Cloud Kubernetes Service](https://cloud.ib
 
 1. Download the [latest release Helm](https://github.com/helm/helm/releases) for your environment, which in this case is `Linux amd64`.
 
-2. Unpack it: `tar -zxvf helm-v2.<x>.<y>-linux-amd64.tgz`.
+2. Unpack it: `$ tar -zxvf helm-v2.<x>.<y>-linux-amd64.tgz`.
 
 3. Find the helm binary in the unpacked directory, and move it to its desired location: `mv linux-amd64/helm /usr/local/bin/helm`. It is best if the location you copy to is pathed, as it avoids having to path the helm commands.
 
@@ -18,7 +18,7 @@ Create a Kubernetes cluster with [IBM Cloud Kubernetes Service](https://cloud.ib
 
 # Installing the Helm Server (Tiller)
 
-1. Run the command: `helm init`. This will initialize the Helm CLI and also install Tiller into the Kubernetes cluster under the `tiller-namespace`.
+1. Run the command: `$ helm init`. This will initialize the Helm CLI and also install Tiller into the Kubernetes cluster under the `tiller-namespace`.
 
 2. You can verify that the client and server are installed correctly by running the command, `helm version`. This should return both the client and server versions. Refer to the doc [installing Tiller](https://docs.helm.sh/using_helm/#installing-tiller) for more details.
 

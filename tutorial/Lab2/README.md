@@ -48,7 +48,7 @@ In this part of the lab we will update the previously deployed application [Gues
     $ kubectl create -f guestbook-service.yaml
     ```
     
-6. To check the updates, you can run ```kubectl get all --namespace default```:
+6. To check the updates, you can run ```$ kubectl get all --namespace default```:
     
     ```console
     NAME                                READY     STATUS    RESTARTS   AGE
@@ -83,7 +83,7 @@ Before we start, let's take a few minutes to see how Helm simplifies the process
 * Values: An object that provides access to the values passed into the chart. An example of this is in `guestbook-service`, which contains the line `type: {{ .Values.service.type }}`. This line provides the capability to set the service type during an upgrade or install.
 * Control structures: Also called “actions” in template parlance, control structures provide the template author with the ability to control the flow of a template’s generation. An example of this is in `redis-slave-service`, which contains the line `{{- if .Values.redis.slaveEnabled -}}`. This line allows us to enable/disable the REDIS master/slave during an upgrade or install.
 
-The complete `redis-slave-service.yaml` file shown below, demonstrates how the file becomes redundant when the `slaveEnabled` flag is disabled and also how the port value is set.
+The complete `redis-slave-service.yaml` file shown below, demonstrates how the file becomes redundant when the `slaveEnabled` flag is disabled and also how the port value is set. There are more examples of templating functionality in the other chart files. 
 
 ```
 {{- if .Values.redis.slaveEnabled -}}
@@ -108,7 +108,7 @@ Enough talking about the theory. Now let's give it a go!
 
 1. Update the application:
 
-    ```helm upgrade guestbook-demo ./guestbook --set redis.slaveEnabled=false,service.type=NodePort --namespace helm-demo```
+    ```$ helm upgrade guestbook-demo ./guestbook --set redis.slaveEnabled=false,service.type=NodePort --namespace helm-demo```
     
     A Helm upgrade takes an existing release and upgrades it according to the information you provide. You should see output similar to the following:
     
@@ -145,7 +145,7 @@ Enough talking about the theory. Now let's give it a go!
     
     The `upgrade` command upgrades the app to a specified version of a chart, removes the `redis-slave` resources, and updates the app `service.type` to `NodePort`.
         
-    To check the updates, you can run ```kubectl get all --namespace helm-demo```
+    To check the updates, you can run ```$ kubectl get all --namespace helm-demo```
     
     ```console
     NAME                                READY     STATUS    RESTARTS   AGE

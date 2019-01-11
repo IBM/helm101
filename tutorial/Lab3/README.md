@@ -37,7 +37,7 @@ Let's see how this works in practice.
     ```console
     Rollback was a success! Happy Helming!
     ```
-    Check the history again, `helm history guestbook-demo`
+    Check the history again, `$ helm history guestbook-demo`
     
     You should see output similar to the following:
     
@@ -48,7 +48,7 @@ Let's see how this works in practice.
     3       	Mon Sep 24 11:59:18 2018	DEPLOYED  	guestbook-0.1.0	Rollback to 1
     ```
     
-    To check the rollback, you can run `kubectl get all --namespace helm-demo`:
+    To check the rollback, you can run `$ kubectl get all --namespace helm-demo`:
     
     ```console
     NAME                                READY     STATUS    RESTARTS   AGE

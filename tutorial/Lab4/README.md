@@ -12,7 +12,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
 
 1. Check the repositories configured on your system:
 
-   ```helm repo list```
+   ```$ helm repo list```
    
    The output should be similar to the following:
    
@@ -26,13 +26,13 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
 
 2. Add `helm101` repo:
 
-   ```helm repo add helm101 https://ibm.github.io/helm101/```
+   ```$ helm repo add helm101 https://ibm.github.io/helm101/```
    
    Should generate an output as follows:
    
    ```"helmm101" has been added to your repositories```
    
-   You can also search your repositories for charts by running the following command, ```helm search helm101```:
+   You can also search your repositories for charts by running the following command, ```$ helm search helm101```:
    
    ```console
    NAME             	CHART VERSION	APP VERSION	DESCRIPTION                                                 
@@ -43,7 +43,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
 
    As mentioned we are going to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/). As the repo is installed in our local respoitory we can reference the chart using the `repo name/chart name`, in other words `helm101/guestbook`. This means we can install the chart like we did previously with the command:
 
-   ```helm install helm101/guestbook --name guestbook-demo --namespace repo-demo```
+   ```$ helm install helm101/guestbook --name guestbook-demo --namespace repo-demo```
    
    The output should be similar to the following:
    

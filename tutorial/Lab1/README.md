@@ -42,7 +42,7 @@ You can now play with the guestbook that you just created by opening it in a bro
     If you are running Kubernetes locally, view the guestbook by navigating to `http://localhost:3000` in your browser.
 
  * **Remote Host:**
-    1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `kubectl get services` output. 
+    1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `$ kubectl get services` output. 
 
     ```console
     $ kubectl get services
@@ -59,7 +59,8 @@ You can now play with the guestbook that you just created by opening it in a bro
     $ kubectl get nodes -o wide
 NAME           STATUS    ROLES     AGE       VERSION        EXTERNAL-IP      OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
 10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
-    ``` 
+    ```
+
     In this scenario the external IP is `173.193.92.112` and the URL is `http://50.23.5.136:31838`.
 
     2. Navigate to the output given (for example `http://50.23.5.136:31838`) in your browser. You should see the guestbook now displaying in your browser:
@@ -92,9 +93,9 @@ Let's go ahead and install the chart now.
 
 1. Install the app as a Helm chart
 
-    ```helm install ./guestbook/ --name guestbook-demo --namespace helm-demo```
+    ```$ helm install ./guestbook/ --name guestbook-demo --namespace helm-demo```
     
-    Note: `helm install` command will create the `helm-demo` namespace if it does not exist.
+    Note: `$ helm install` command will create the `helm-demo` namespace if it does not exist.
     
     You should see output similar to the following:
     
@@ -134,7 +135,7 @@ Let's go ahead and install the chart now.
     
     The chart install performs the Kubernetes deployments and service creations of the redis master and slaves, and the guestbook app, as one. This is because the chart is a collection of files that describe a related set of Kubernetes resources and Helm manages the creation of these resources via the Kubernetes API.    
     
-    To check the deployment, you can use `kubectl get deployment guestbook-demo --namespace helm-demo`.
+    To check the deployment, you can use `$ kubectl get deployment guestbook-demo --namespace helm-demo`.
     
     You should see output similar to the following:
     
@@ -143,7 +144,7 @@ Let's go ahead and install the chart now.
     guestbook-demo   2         2         2            2           51m
     ```
     
-    To check the status of the running application, you can use `kubectl get pods --namespace helm-demo`.
+    To check the status of the running application, you can use `$ kubectl get pods --namespace helm-demo`.
     
     ```console
     NAME                            READY     STATUS    RESTARTS   AGE
@@ -154,7 +155,7 @@ Let's go ahead and install the chart now.
     redis-slave-586b4c847c-q7rq5    1/1       Running   0          52m
     ```
    
-    To check the services, you can run `kubectl get services --namespace helm-demo`.
+    To check the services, you can run `$ kubectl get services --namespace helm-demo`.
     
     ```console
     NAME             TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
@@ -171,7 +172,7 @@ You can now play with the guestbook that you just created by opening it in a bro
     If you are running Kubernetes locally, view the guestbook by navigating to `http://localhost:3000` in your browser.
 
  * **Remote Host:**
-    1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `kubectl get services` output. This can be retrieved by following the "NOTES" section is the install output. The commands will be similar to the following:
+    1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `$ kubectl get services` output. This can be retrieved by following the "NOTES" section is the install output. The commands will be similar to the following:
     
     ```console
     $ export NODE_PORT=$(kubectl get --namespace helm-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-helm)
@@ -186,7 +187,8 @@ You can now play with the guestbook that you just created by opening it in a bro
     $ kubectl get nodes -o wide
 NAME           STATUS    ROLES     AGE       VERSION        EXTERNAL-IP      OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
 10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
-    ``` 
+    ```
+
     In this scenario the external IP is `173.193.92.112` and the URL is `http://50.23.5.136:31367`.
  
     2. Navigate to the output given (for example `http://50.23.5.136:31367`) in your browser. You should see the guestbook now displaying in your browser:
