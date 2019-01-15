@@ -1,4 +1,4 @@
-# Lab 2. I need to change but none of the hassle
+# Lab 2. I need to change but want none of the hassle
 
 In [Lab 1](../Lab1/README.md), we installed the guestbook sample app by using Helm and saw the benefits over using `kubectl`. You probably think that you're done and know enough to use Helm. But what about updates or improvements to the chart? How do you update your running app to pick up these changes? 
 
