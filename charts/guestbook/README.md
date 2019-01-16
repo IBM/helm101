@@ -42,10 +42,13 @@ The following tables lists the configurable parameters of the chart and their de
 | `image.repository`         | Image repository                                | `ibmcom/guestbook`                                         |
 | `image.tag`                | Image tag                                       | `v1`                                                       |
 | `image.pullPolicy`         | Image pull policy                               | `Always`                                                   |
-| `serviceType`              | Service type                                    | `LoadBalancer`                                             |
+| `service.type`             | Service type                                    | `LoadBalancer`                                             |
+| `service.port`             | Service port                                    | `3000`                                                     |
+| `redis.slaveEnabled`       | Redis slave enabled                             | `true`                                                     |
+| `redis.port`               | Redis port                                      | `6379`                                                     |
 
 Specify each parameter using the `--set [key=value]` argument to `helm install`. For example,
 
 ```bash
-$ helm install my-repo/guestbook --set serviceType=NodePort
+$ helm install my-repo/guestbook --set service.type=NodePort
 ```
