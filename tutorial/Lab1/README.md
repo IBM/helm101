@@ -42,7 +42,7 @@ In this part of the lab, we will deploy the application using the Kubernetes cli
   If you are running Kubernetes locally, view the guestbook by navigating to `http://localhost:3000` in your browser.
 
  * **Remote Host:**
-    1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `$ kubectl get services` output. 
+    1. To view the guestbook on a remote host, locate the external IP and port of the load balancer in the **EXTERNAL-IP** and **PORTS** columns of the `$ kubectl get services` output. 
 
        ```console
        $ kubectl get services
@@ -53,6 +53,8 @@ In this part of the lab, we will deploy the application using the Kubernetes cli
        .........
        ```
 
+       In this scenario the URL is `http://50.23.5.136:31838`.
+       
        Note: If no external IP is assigned, then you can get the external IP with the following command:
 
        ```console
@@ -61,7 +63,7 @@ In this part of the lab, we will deploy the application using the Kubernetes cli
        10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
        ```
 
-       In this scenario the external IP is `173.193.92.112` and the URL is `http://50.23.5.136:31838`.
+       In this scenario the URL is `http://173.193.92.112:31838`.
 
     2. Navigate to the output given (for example `http://50.23.5.136:31838`) in your browser. You should see the guestbook now displaying in your browser:
 
@@ -172,24 +174,25 @@ Let's go ahead and install the chart now.
     If you are running Kubernetes locally, view the guestbook by navigating to `http://localhost:3000` in your browser.
 
  * **Remote Host:**
-    1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `$ kubectl get services` output. This can be retrieved by following the "NOTES" section is the install output. The commands will be similar to the following:
+    1. To view the guestbook on a remote host, locate the external IP and the port of the load balancer by following the "NOTES" section in the install output. The commands will be similar to the following:
     
        ```console
-       $ export NODE_PORT=$(kubectl get --namespace helm-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-helm)
-       $ export NODE_IP=$(kubectl get nodes -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address})
-       $ echo http://$NODE_IP:$NODE_PORT
+       $ export SERVICE_IP=$(kubectl get svc --namespace helm-demo guestbook-demo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+       $ echo http://$SERVICE_IP:331367
        http://50.23.5.136:31367
        ```
 
+       In this scenario the URL is `http://50.23.5.136:31367`.
+       
        Note: If no external IP is assigned, then you can get the external IP with the following command:
 
        ```console
        $ kubectl get nodes -o wide
-       NAME           STATUS    ROLES     AGE       VERSION        EXTERNAL-IP      OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+       NAME           STATUS    ROLES     AGE       VERSION        EXTERNAL-IP      OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME  
        10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
        ```
 
-       In this scenario the external IP is `173.193.92.112` and the URL is `http://50.23.5.136:31367`.
+       In this scenario the URL is `http://173.193.92.112:31838`.
  
     2. Navigate to the output given (for example `http://50.23.5.136:31367`) in your browser. You should see the guestbook now displaying in your browser:
 
