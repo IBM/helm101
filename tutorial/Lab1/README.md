@@ -36,36 +36,36 @@ In this part of the lab, we will deploy the application using the Kubernetes cli
  
 2. View the guestbook:
 
-You can now play with the guestbook that you just created by opening it in a browser (it might take a few moments for the guestbook to come up).
+   You can now play with the guestbook that you just created by opening it in a browser (it might take a few moments for the guestbook to come up).
 
- * **Local Host:**
+   * **Local Host:**
     If you are running Kubernetes locally, view the guestbook by navigating to `http://localhost:3000` in your browser.
 
- * **Remote Host:**
-    1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `$ kubectl get services` output. 
+   * **Remote Host:**
+      1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `$ kubectl get services` output. 
 
-    ```console
-    $ kubectl get services
-    NAME           TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
-    guestbook      LoadBalancer   172.21.252.107   50.23.5.136   3000:31838/TCP   14m
-    redis-master   ClusterIP      172.21.97.222    <none>        6379/TCP         14m
-    redis-slave    ClusterIP      172.21.43.70     <none>        6379/TCP         14m
-    .........
-    ```
+         ```console
+         $ kubectl get services
+         NAME           TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+         guestbook      LoadBalancer   172.21.252.107   50.23.5.136   3000:31838/TCP   14m
+         redis-master   ClusterIP      172.21.97.222    <none>        6379/TCP         14m
+         redis-slave    ClusterIP      172.21.43.70     <none>        6379/TCP         14m
+         .........
+         ```
 
-    Note: If no external IP is assigned, then you can get the external IP with the following command:
+         Note: If no external IP is assigned, then you can get the external IP with the following command:
 
-    ```console
-    $ kubectl get nodes -o wide
-    NAME           STATUS    ROLES     AGE       VERSION        EXTERNAL-IP      OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME  
-    10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
-    ```
+         ```console
+         $ kubectl get nodes -o wide
+         NAME           STATUS    ROLES     AGE       VERSION        EXTERNAL-IP      OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME  
+         10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
+         ```
 
-    In this scenario the external IP is `173.193.92.112` and the URL is `http://50.23.5.136:31838`.
+         In this scenario the external IP is `173.193.92.112` and the URL is `http://50.23.5.136:31838`.
 
-    2. Navigate to the output given (for example `http://50.23.5.136:31838`) in your browser. You should see the guestbook now displaying in your browser:
+      2. Navigate to the output given (for example `http://50.23.5.136:31838`) in your browser. You should see the guestbook now displaying in your browser:
 
-    ![Guestbook](../images/guestbook-page.png)
+         ![Guestbook](../images/guestbook-page.png)
 
 # Deploy the application using Helm
 
@@ -91,7 +91,7 @@ Note: The template files shown above will be rendered into Kubernetes manifest f
 
 Let's go ahead and install the chart now.
 
-1. Install the app as a Helm chart
+1. Install the app as a Helm chart:
 
     ```$ helm install ./guestbook/ --name guestbook-demo --namespace helm-demo```
     
@@ -164,36 +164,36 @@ Let's go ahead and install the chart now.
     redis-slave      ClusterIP      172.21.176.148   <none>        6379/TCP         50m
     ```
     
-3. View the guestbook
+3. View the guestbook:
 
-You can now play with the guestbook that you just created by opening it in a browser (it might take a few moments for the guestbook to come up).
+   You can now play with the guestbook that you just created by opening it in a browser (it might take a few moments for the guestbook to come up).
 
- * **Local Host:**
+   * **Local Host:**
     If you are running Kubernetes locally, view the guestbook by navigating to `http://localhost:3000` in your browser.
 
- * **Remote Host:**
-    1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `$ kubectl get services` output. This can be retrieved by following the "NOTES" section is the install output. The commands will be similar to the following:
+   * **Remote Host:**
+      1. To view the guestbook on a remote host, locate the external IP of the load balancer in the **IP** column of the `$ kubectl get services` output. This can be retrieved by following the "NOTES" section is the install output. The commands will be similar to the following:
     
-    ```console
-    $ export NODE_PORT=$(kubectl get --namespace helm-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-helm)
-    $ export NODE_IP=$(kubectl get nodes -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address})
-    $ echo http://$NODE_IP:$NODE_PORT
-    http://50.23.5.136:31367
-    ```
+         ```console
+         $ export NODE_PORT=$(kubectl get --namespace helm-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-helm)
+         $ export NODE_IP=$(kubectl get nodes -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address})
+         $ echo http://$NODE_IP:$NODE_PORT
+         http://50.23.5.136:31367
+         ```
 
-    Note: If no external IP is assigned, then you can get the external IP with the following command:
+         Note: If no external IP is assigned, then you can get the external IP with the following command:
 
-    ```console
-    $ kubectl get nodes -o wide
-    NAME           STATUS    ROLES     AGE       VERSION        EXTERNAL-IP      OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-    10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
-    ```
+         ```console
+         $ kubectl get nodes -o wide
+         NAME           STATUS    ROLES     AGE       VERSION        EXTERNAL-IP      OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+         10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
+         ```
 
-    In this scenario the external IP is `173.193.92.112` and the URL is `http://50.23.5.136:31367`.
+         In this scenario the external IP is `173.193.92.112` and the URL is `http://50.23.5.136:31367`.
  
-    2. Navigate to the output given (for example `http://50.23.5.136:31367`) in your browser. You should see the guestbook now displaying in your browser:
+      2. Navigate to the output given (for example `http://50.23.5.136:31367`) in your browser. You should see the guestbook now displaying in your browser:
 
-    ![Guestbook](../images/guestbook-page.png)
+         ![Guestbook](../images/guestbook-page.png)
 
 # Conclusion
 
