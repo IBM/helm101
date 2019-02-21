@@ -26,7 +26,7 @@ $ helm search helm101
 
 Deploy: 
 ```bash
-$ helm install helm101/guestbook --name myguestbook --set serviceType=NodePort
+$ helm install helm101/guestbook --name myguestbook --set service.type=NodePort
 ```
 Follow the output instructions to see your guestbook application.
 
@@ -63,5 +63,3 @@ Check the history:
 ```bash
 $ helm history myguestbook
 ```
-
-
