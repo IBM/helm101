@@ -30,6 +30,8 @@ $ helm install helm101/guestbook --name myguestbook --set service.type=NodePort
 ```
 Follow the output instructions to see your guestbook application.
 
+*Note: For chart v0.1.0, the service type is set as `--set serviceType=NodePort`.* 
+
 Verify that your guestbook chart is deployed:
 ```bash
 $ helm ls

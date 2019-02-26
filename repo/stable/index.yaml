@@ -10,7 +10,7 @@ entries:
     - https://ibm.github.io/helm101/guestbook-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: 2019-02-21T14:09:27.964727056Z
+    created: 2018-05-10T21:50:41.837568406-04:00
     description: A Helm chart to deploy Guestbook three tier web application.
     digest: 7f186687f43008ed68e9e4a09aa4e45586e2d6ed5f85287c64bda3f5a7ea4d12
     name: guestbook
