@@ -7,7 +7,7 @@ entries:
     digest: 74d7c81b83aeea22feb3c4710f86c42b5be61e3783da5fb649edd66f3df55f90
     name: guestbook
     urls:
-    - https://ibm.github.io/helm101/guestbook-0.2.0.tgz
+    - https://raw.githubusercontent.com/ibm/helm101/master/repo/stable/guestbook-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
     created: 2018-05-10T21:50:41.837568406-04:00
@@ -15,6 +15,6 @@ entries:
     digest: 7f186687f43008ed68e9e4a09aa4e45586e2d6ed5f85287c64bda3f5a7ea4d12
     name: guestbook
     urls:
-    - https://ibm.github.io/helm101/guestbook-0.1.0.tgz
+    - https://raw.githubusercontent.com/ibm/helm101/master/repo/stable/guestbook-0.1.0.tgz
     version: 0.1.0
 generated: 2019-02-21T14:09:27.909109099Z
