@@ -17,12 +17,10 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    The output should be similar to the following:
    
    ```console
-   NAME  	URL                                             
-   stable	https://kubernetes-charts.storage.googleapis.com
-   local 	http://127.0.0.1:8879/charts                   
+   Error: no repositories to show
    ```
    
-   Note: The Helm charts repository is installed by default with Helm. It is installed with the repositories `local` and `stable`. You can run the `local` repo using the [helm serve](https://github.com/helm/helm/blob/master/docs/helm/helm_serve.md) command. The `stable` repo is located at `https://kubernetes-charts.storage.googleapis.com/`.
+   Note: No Helm charts repository is installed by default with Helm v3.1.
 
 2. Add `helm101` repo:
 
@@ -32,7 +30,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    
    ```"helmm101" has been added to your repositories```
    
-   You can also search your repositories for charts by running the following command, ```$ helm search helm101```:
+   You can also search your repositories for charts by running the following command, ```$ helm search repo helm101```:
    
    ```console
    NAME             	CHART VERSION	APP VERSION	DESCRIPTION                                                 
@@ -43,44 +41,59 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
 
    As mentioned we are going to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/). As the repo is installed in our local respoitory we can reference the chart using the `repo name/chart name`, in other words `helm101/guestbook`. This means we can install the chart like we did previously with the command:
 
-   ```$ helm install helm101/guestbook --name guestbook-demo --namespace repo-demo```
+   ```$ helm install guestbook-demo-repo helm101/guestbook --namespace repo-demo```
    
    The output should be similar to the following:
    
    ```console
-   NAME:   guestbook-demo
-   LAST DEPLOYED: Thu Dec 13 07:36:18 2018
+   NAME: guestbook-demo-repo
+   LAST DEPLOYED: Wed Feb 19 18:38:35 2020
    NAMESPACE: repo-demo
-   STATUS: DEPLOYED
-   
-   RESOURCES:
-   ==> v1/Service
-   NAME                      TYPE          CLUSTER-IP     EXTERNAL-IP  PORT(S)         AGE
-   guestbook-demo-guestbook  LoadBalancer  10.98.43.107   <pending>    3000:31241/TCP  2s
-   redis-master              ClusterIP     10.103.16.208  <none>       6379/TCP        2s
-   redis-slave               ClusterIP     10.99.249.122  <none>       6379/TCP        2s
-   
-   ==> v1/Deployment
-   NAME                      READY  UP-TO-DATE  AVAILABLE  AGE
-   guestbook-demo-guestbook  0/2    2           0          2s
-   redis-master              0/1    1           0          2s
-   redis-slave               0/2    2           0          2s
-   
-   ==> v1/Pod(related)
-   NAME                                       READY  STATUS             RESTARTS  AGE
-   guestbook-demo-guestbook-75f5f9cf84-jcbtb  0/1    Pending            0         2s
-   guestbook-demo-guestbook-75f5f9cf84-lzsw4  0/1    ContainerCreating  0         2s
-   redis-master-7b5cc58fc8-2bzw6              0/1    ContainerCreating  0         2s
-   redis-slave-5db5dcfdfd-24249               0/1    ContainerCreating  0         2s
-   redis-slave-5db5dcfdfd-nkcpt               0/1    ContainerCreating  0         1s
-   
-   
+   STATUS: deployed
+   REVISION: 1
+   TEST SUITE: None
    NOTES:
-   Get the application URL by running these commands:
-   export NODE_PORT=$(kubectl get --namespace repo-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-demo-guestbook)
-   export NODE_IP=$(kubectl get nodes -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address})
-   echo http://$NODE_IP:$NODE_PORT```
+   1. Get the application URL by running these commands:
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w guestbook-demo-repo --namespace repo-demo'
+     export SERVICE_IP=$(kubectl get svc --namespace repo-demo guestbook-demo-repo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+     echo http://$SERVICE_IP:3000
+   ```
    
+4. Verify the new release
+
+   To check the new release, you can run
+
+   ```
+   $ kubectl get all --namespace repo-demo
+   ```
+
+   The command should returns
+
+   ```console
+   NAME                                       READY   STATUS             RESTARTS   AGE
+   pod/guestbook-demo-repo-7c65cfd8d6-2z7qc   1/1     Running            0          4m41s
+   pod/guestbook-demo-repo-7c65cfd8d6-9b96v   1/1     Running            0          4m41s
+   pod/redis-master-65b496655c-v7fbw          1/1     Running            0          4m41s
+   pod/redis-slave-775f8c567f-6rb8b           0/1     ImagePullBackOff   0          4m41s
+   pod/redis-slave-775f8c567f-m9zcz           0/1     ImagePullBackOff   0          4m41s
+
+   NAME                          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)          AGE
+   service/guestbook-demo-repo   LoadBalancer   172.21.245.164   169.46.44.178   3000:32674/TCP   4m41s
+   service/redis-master          ClusterIP      172.21.22.93     <none>          6379/TCP         4m41s
+   service/redis-slave           ClusterIP      172.21.21.52     <none>          6379/TCP         4m41s
+
+   NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE
+   deployment.apps/guestbook-demo-repo   2/2     2            2           4m41s
+   deployment.apps/redis-master          1/1     1            1           4m41s
+   deployment.apps/redis-slave           0/2     2            0           4m41s
+
+   NAME                                             DESIRED   CURRENT   READY   AGE
+   replicaset.apps/guestbook-demo-repo-7c65cfd8d6   2         2         2       4m41s
+   replicaset.apps/redis-master-65b496655c          1         1         1       4m41s
+   replicaset.apps/redis-slave-775f8c567f           2         2         0       4m41s
+   ```
+
 # Conclusion
 
 This lab provided you with a brief introduction to the Helm repositories to show how charts can be installed. The ability to share your chart means ease of use to both you and your consumers.
