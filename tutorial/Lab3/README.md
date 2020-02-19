@@ -17,35 +17,35 @@ Let's see how this works in practice.
 1. Check the number of deployments:
 
     ```console
-    $ helm history guestbook-demo
+    $ helm history guestbook-demo --namespace helm-demo
     ```
     
     You should see output similar to the following because we did an upgrade in [Lab 2](../Lab2/README.md) after the initial install in [Lab 1](../Lab1/README.md):
     
     ```console
-    REVISION	UPDATED                 	STATUS    	CHART          	DESCRIPTION
-    1       	Mon Sep 24 08:54:04 2018	SUPERSEDED	guestbook-0.1.0	Install complete
-    2       	Mon Sep 24 10:36:18 2018	DEPLOYED  	guestbook-0.1.0	Upgrade complete
+    REVISION        UPDATED                         STATUS          CHART           APP VERSION     DESCRIPTION     
+    1               Wed Feb 19 18:02:11 2020        superseded      guestbook-0.2.0                 Install complete
+    2               Wed Feb 19 18:14:43 2020        deployed        guestbook-0.2.0                 Upgrade complete
     ```
         
 2. Roll back to the previous revision:
 
     In this rollback, Helm checks the changes that occured when upgrading from the revision 1 to revision 2. This information enables it to makes the calls to the Kubernetes API server, to update the deployed application as per the initial deployment - in other words with Redis slaves and using a load balancer.
 
-    Rollback with this command, ```$ helm rollback guestbook-demo 1```
+    Rollback with this command, ```$ helm rollback guestbook-demo 1 --namespace helm-demo```
     
     ```console
     Rollback was a success! Happy Helming!
     ```
-    Check the history again, `$ helm history guestbook-demo`
+    Check the history again, `$ helm history guestbook-demo --namespace helm-demo`
     
     You should see output similar to the following:
     
     ```console
-    REVISION	UPDATED                 	STATUS    	CHART          	DESCRIPTION     
-    1       	Mon Sep 24 08:54:04 2018	SUPERSEDED	guestbook-0.1.0	Install complete
-    2       	Mon Sep 24 10:36:18 2018	SUPERSEDED	guestbook-0.1.0	Upgrade complete
-    3       	Mon Sep 24 11:59:18 2018	DEPLOYED  	guestbook-0.1.0	Rollback to 1
+    REVISION        UPDATED                         STATUS          CHART           APP VERSION     DESCRIPTION     
+    1               Wed Feb 19 18:02:11 2020        superseded      guestbook-0.2.0                 Install complete
+    2               Wed Feb 19 18:14:43 2020        superseded      guestbook-0.2.0                 Upgrade complete
+    3               Wed Feb 19 18:25:40 2020        deployed        guestbook-0.2.0                 Rollback to 1  
     ```
     
     To check the rollback, you can run `$ kubectl get all --namespace helm-demo`:
