@@ -95,45 +95,26 @@ Let's go ahead and install the chart now.
 
 1. Install the app as a Helm chart:
 
-    ```$ helm install ./guestbook/ --name guestbook-demo --namespace helm-demo```
+    ```$ helm install guestbook-demo ./guestbook/ --namespace helm-demo```
     
     Note: `$ helm install` command will create the `helm-demo` namespace if it does not exist.
     
     You should see output similar to the following:
     
-    ```console
-    NAME:   guestbook-demo
-    LAST DEPLOYED: Fri Sep 21 14:26:01 2018
-    NAMESPACE: helm-demo
-    STATUS: DEPLOYED
-    
-    RESOURCES:
-    ==> v1/Service
-    NAME            AGE
-    guestbook-demo  0s
-    redis-master    0s
-    redis-slave     0s
-    
-    ==> v1/Deployment
-    guestbook-demo  0s
-    redis-master    0s
-    redis-slave     0s
-
-    ==> v1/Pod(related)
-    NAME                             READY  STATUS             RESTARTS  AGE
-    guestbook-demo-5dccd68c88-hqlws  0/1    ContainerCreating  0         0s
-    guestbook-demo-5dccd68c88-sdhcv  0/1    ContainerCreating  0         0s
-    redis-master-5d8b66464f-g9q7m    0/1    ContainerCreating  0         0s
-    redis-slave-586b4c847c-ct77m     0/1    ContainerCreating  0         0s
-    redis-slave-586b4c847c-nrzwj     0/1    ContainerCreating  0         0s
-
-    NOTES:
-    1. Get the application URL by running these commands:
-      NOTE: It may take a few minutes for the LoadBalancer IP to be available.
-            You can watch the status of by running 'kubectl get svc -w guestbook-demo --namespace helm-demo'
-      export SERVICE_IP=$(kubectl get svc --namespace helm-demo guestbook-demo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-      echo http://$SERVICE_IP:3000
-    ```
+   ```console
+   NAME: guestbook-demo
+   LAST DEPLOYED: Wed Feb 19 18:02:11 2020
+   NAMESPACE: helm-demo
+   STATUS: deployed
+   REVISION: 1
+   TEST SUITE: None
+   NOTES:
+   1. Get the application URL by running these commands:
+    NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w guestbook-demo --namespace helm-demo'
+     export SERVICE_IP=$(kubectl get svc --namespace helm-demo guestbook-demo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+     echo http://$SERVICE_IP:3000
+   ```
     
     The chart install performs the Kubernetes deployments and service creations of the redis master and slaves, and the guestbook app, as one. This is because the chart is a collection of files that describe a related set of Kubernetes resources and Helm manages the creation of these resources via the Kubernetes API.    
     
@@ -141,10 +122,10 @@ Let's go ahead and install the chart now.
     
     You should see output similar to the following:
     
-    ```console
-    NAME             DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-    guestbook-demo   2         2         2            2           51m
-    ```
+   ```console
+   NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+   guestbook-demo   2/2     2            2           3m5s
+   ```
     
     To check the status of the running application, you can use `$ kubectl get pods --namespace helm-demo`.
     
