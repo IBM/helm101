@@ -114,28 +114,12 @@ Enough talking about the theory. Now let's give it a go!
     
     ```console
     Release "guestbook-demo" has been upgraded. Happy Helming!
-    LAST DEPLOYED: Mon Sep 24 10:36:18 2018
+    NAME: guestbook-demo
+    LAST DEPLOYED: Wed Feb 19 18:14:43 2020
     NAMESPACE: helm-demo
-    STATUS: DEPLOYED
-    
-    RESOURCES:
-    ==> v1/Service
-    NAME            AGE
-    guestbook-demo  1h
-    redis-master    1h
-    
-    ==> v1/Deployment
-    guestbook-demo  1h
-    redis-master    1h
-    
-    ==> v1/Pod(related)
-    
-    NAME                           READY  STATUS   RESTARTS  AGE
-    guestbook-demo-6c9cf8b9-dhqk9  1/1    Running  0         1h
-    guestbook-demo-6c9cf8b9-zddn2  1/1    Running  0         1h
-    redis-master-5d8b66464f-g7sh6  1/1    Running  0         1h
-    
-    
+    STATUS: deployed
+    REVISION: 2
+    TEST SUITE: None
     NOTES:
     1. Get the application URL by running these commands:
       export NODE_PORT=$(kubectl get --namespace helm-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-demo)
