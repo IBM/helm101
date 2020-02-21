@@ -6,7 +6,7 @@ A means of sharing is a chart repository, which is a location where packaged cha
 
 # Using charts from a public repository
 
-Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Helm Charts](https://github.com/helm/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://github.com/helm/helm/blob/master/docs/chart_repository.md) for more details. 
+Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Helm Charts](https://github.com/helm/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://v2.helm.sh/docs/developing_charts/#the-chart-repository-guide) for more details. 
 
 In this part of the lab, we show you how to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/).
 
@@ -22,7 +22,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    local 	http://127.0.0.1:8879/charts                   
    ```
    
-   Note: The Helm charts repository is installed by default with Helm. It is installed with the repositories `local` and `stable`. You can run the `local` repo using the [helm serve](https://github.com/helm/helm/blob/master/docs/helm/helm_serve.md) command. The `stable` repo is located at `https://kubernetes-charts.storage.googleapis.com/`.
+   Note: The Helm charts repository is installed by default with Helm. It is installed with the repositories `local` and `stable`. You can run the `local` repo using the [helm serve](https://v2.helm.sh/docs/helm/#helm-serve) command. The `stable` repo is located at `https://kubernetes-charts.storage.googleapis.com/`.
 
 2. Add `helm101` repo:
 
