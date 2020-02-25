@@ -89,44 +89,24 @@ A chart is defined as a collection of files that describe a related set of Kuber
    * redis-slave-service.yaml: Redis slave service resource.
 * values.yaml: The default configuration values for the chart.
 
-Note: The template files shown above will be rendered into Kubernetes manifest files by Tiller before being passed to the Kubernetes API server. Therefore, they map to the manifest files that we deployed when we used `kubectl` (minus the helper and notes files). 
+Note: The template files shown above will be rendered into Kubernetes manifest files before being passed to the Kubernetes API server. Therefore, they map to the manifest files that we deployed when we used `kubectl` (minus the helper and notes files). 
 
-Let's go ahead and install the chart now.
+Let's go ahead and install the chart now. If the `helm-demo` namespace does not exist, you will need to create it as follows:
+```$ kubectl create namespace helm-demo```
 
 1. Install the app as a Helm chart:
 
-    ```$ helm install ./guestbook/ --name guestbook-demo --namespace helm-demo```
-    
-    Note: `$ helm install` command will create the `helm-demo` namespace if it does not exist.
+    ```$ helm install guestbook-demo ./guestbook/ --namespace helm-demo```
     
     You should see output similar to the following:
     
     ```console
-    NAME:   guestbook-demo
-    LAST DEPLOYED: Fri Sep 21 14:26:01 2018
+    NAME: guestbook-demo
+    LAST DEPLOYED: Mon Feb 24 18:08:02 2020
     NAMESPACE: helm-demo
-    STATUS: DEPLOYED
-    
-    RESOURCES:
-    ==> v1/Service
-    NAME            AGE
-    guestbook-demo  0s
-    redis-master    0s
-    redis-slave     0s
-    
-    ==> v1/Deployment
-    guestbook-demo  0s
-    redis-master    0s
-    redis-slave     0s
-
-    ==> v1/Pod(related)
-    NAME                             READY  STATUS             RESTARTS  AGE
-    guestbook-demo-5dccd68c88-hqlws  0/1    ContainerCreating  0         0s
-    guestbook-demo-5dccd68c88-sdhcv  0/1    ContainerCreating  0         0s
-    redis-master-5d8b66464f-g9q7m    0/1    ContainerCreating  0         0s
-    redis-slave-586b4c847c-ct77m     0/1    ContainerCreating  0         0s
-    redis-slave-586b4c847c-nrzwj     0/1    ContainerCreating  0         0s
-
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
     NOTES:
     1. Get the application URL by running these commands:
       NOTE: It may take a few minutes for the LoadBalancer IP to be available.
@@ -142,8 +122,8 @@ Let's go ahead and install the chart now.
     You should see output similar to the following:
     
     ```console
-    NAME             DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-    guestbook-demo   2         2         2            2           51m
+    NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+    guestbook-demo   2/2     2            2           51m
     ```
     
     To check the status of the running application, you can use `$ kubectl get pods --namespace helm-demo`.
@@ -161,9 +141,9 @@ Let's go ahead and install the chart now.
     
     ```console
     NAME             TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
-    guestbook-demo   LoadBalancer   172.21.43.244    <pending>     3000:31367/TCP   50m
-    redis-master     ClusterIP      172.21.12.43     <none>        6379/TCP         50m
-    redis-slave      ClusterIP      172.21.176.148   <none>        6379/TCP         50m
+    guestbook-demo   LoadBalancer   172.21.43.244    <pending>     3000:31367/TCP   52m
+    redis-master     ClusterIP      172.21.12.43     <none>        6379/TCP         52m
+    redis-slave      ClusterIP      172.21.176.148   <none>        6379/TCP         52m
     ```
     
 3. View the guestbook:
@@ -178,7 +158,7 @@ Let's go ahead and install the chart now.
     
        ```console
        $ export SERVICE_IP=$(kubectl get svc --namespace helm-demo guestbook-demo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-       $ echo http://$SERVICE_IP:331367
+       $ echo http://$SERVICE_IP:31367
        http://50.23.5.136:31367
        ```
 
@@ -192,7 +172,7 @@ Let's go ahead and install the chart now.
        10.47.122.98   Ready     <none>    1h        v1.10.11+IKS   173.193.92.112   Ubuntu 16.04.5 LTS   4.4.0-141-generic   docker://18.6.1
        ```
 
-       In this scenario the URL is `http://173.193.92.112:31838`.
+       In this scenario the URL is `http://173.193.92.112:31367`.
  
     2. Navigate to the output given (for example `http://50.23.5.136:31367`) in your browser. You should see the guestbook now displaying in your browser:
 

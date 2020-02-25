@@ -6,7 +6,7 @@ A means of sharing is a chart repository, which is a location where packaged cha
 
 # Using charts from a public repository
 
-Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Helm Charts](https://github.com/helm/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://v2.helm.sh/docs/developing_charts/#the-chart-repository-guide) for more details. 
+Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Bitnami Charts](https://github.com/bitnami/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://helm.sh/docs/topics/chart_repository/) for more details. 
 
 In this part of the lab, we show you how to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/).
 
@@ -17,12 +17,10 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    The output should be similar to the following:
    
    ```console
-   NAME  	URL                                             
-   stable	https://kubernetes-charts.storage.googleapis.com
-   local 	http://127.0.0.1:8879/charts                   
+   Error: no repositories to show
    ```
    
-   Note: The Helm charts repository is installed by default with Helm. It is installed with the repositories `local` and `stable`. You can run the `local` repo using the [helm serve](https://v2.helm.sh/docs/helm/#helm-serve) command. The `stable` repo is located at `https://kubernetes-charts.storage.googleapis.com/`.
+   Note: Chart repositories are not installed by default with Helm v3. It is expected that you add the repositories for the charts you want to use. The [Helm Hub](https://hub.helm.sh) provides a centralized search for publicly available distributed charts. Using the hub you can identify the chart with its hosted repository and then add it to your local respoistory list. The [Helm chart repository](https://github.com/helm/charts) like Helm v2 is in "maintenance mode" and will be deprecated by November 13, 2020. See the [project status](https://github.com/helm/charts#status-of-the-project) for more details.
 
 2. Add `helm101` repo:
 
@@ -32,54 +30,45 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    
    ```"helmm101" has been added to your repositories```
    
-   You can also search your repositories for charts by running the following command, ```$ helm search helm101```:
+   You can also search your repositories for charts by running the following command, ```$ helm search repo helm101```:
    
    ```console
-   NAME             	CHART VERSION	APP VERSION	DESCRIPTION                                                 
-   helm101/guestbook	0.1.0        	           	A Helm chart to deploy Guestbook three tier web application.
+   NAME             	CHART VERSION	APP VERSION	DESCRIPTION                                       
+   helm101/guestbook	0.2.1        	           	A Helm chart to deploy Guestbook three tier web...
    ```
       
 3. Install the chart
 
-   As mentioned we are going to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/). As the repo is installed in our local respoitory we can reference the chart using the `repo name/chart name`, in other words `helm101/guestbook`. This means we can install the chart like we did previously with the command:
+   As mentioned we are going to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/). As the repo is added to our local respoitory list we can reference the chart using the `repo name/chart name`, in other words `helm101/guestbook`. This means we can install the chart like we did previously with the command:
 
-   ```$ helm install helm101/guestbook --name guestbook-demo --namespace repo-demo```
+   ```$ helm install guestbook-demo helm101/guestbook --namespace repo-demo```
+
+   If the `repo-demo` namespace does not exist, you will need to create it as follows: ```$ kubectl create namespace repo-demo```
    
    The output should be similar to the following:
    
    ```console
-   NAME:   guestbook-demo
-   LAST DEPLOYED: Thu Dec 13 07:36:18 2018
+   NAME: guestbook-demo
+   LAST DEPLOYED: Tue Feb 25 15:40:17 2020
    NAMESPACE: repo-demo
-   STATUS: DEPLOYED
-   
-   RESOURCES:
-   ==> v1/Service
-   NAME                      TYPE          CLUSTER-IP     EXTERNAL-IP  PORT(S)         AGE
-   guestbook-demo-guestbook  LoadBalancer  10.98.43.107   <pending>    3000:31241/TCP  2s
-   redis-master              ClusterIP     10.103.16.208  <none>       6379/TCP        2s
-   redis-slave               ClusterIP     10.99.249.122  <none>       6379/TCP        2s
-   
-   ==> v1/Deployment
-   NAME                      READY  UP-TO-DATE  AVAILABLE  AGE
-   guestbook-demo-guestbook  0/2    2           0          2s
-   redis-master              0/1    1           0          2s
-   redis-slave               0/2    2           0          2s
-   
-   ==> v1/Pod(related)
-   NAME                                       READY  STATUS             RESTARTS  AGE
-   guestbook-demo-guestbook-75f5f9cf84-jcbtb  0/1    Pending            0         2s
-   guestbook-demo-guestbook-75f5f9cf84-lzsw4  0/1    ContainerCreating  0         2s
-   redis-master-7b5cc58fc8-2bzw6              0/1    ContainerCreating  0         2s
-   redis-slave-5db5dcfdfd-24249               0/1    ContainerCreating  0         2s
-   redis-slave-5db5dcfdfd-nkcpt               0/1    ContainerCreating  0         1s
-   
-   
+   STATUS: deployed
+   REVISION: 1
+   TEST SUITE: None
    NOTES:
-   Get the application URL by running these commands:
-   export NODE_PORT=$(kubectl get --namespace repo-demo -o jsonpath="{.spec.ports[0].nodePort}" services guestbook-demo-guestbook)
-   export NODE_IP=$(kubectl get nodes -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address})
-   echo http://$NODE_IP:$NODE_PORT```
+   1. Get the application URL by running these commands:
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w guestbook-demo --namespace repo-demo'
+     export SERVICE_IP=$(kubectl get svc --namespace repo-demo guestbook-demo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+     echo http://$SERVICE_IP:3000
+   ```
+
+   Check that release deployed as expected as follows:
+
+   ```console
+   $ helm3 list -n repo-demo
+   NAME          	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART          	APP VERSION
+   guestbook-demo	repo-demo	1       	2020-02-25 15:40:17.627745329 +0000 UTC	deployed	guestbook-0.2.1
+   ```
    
 # Conclusion
 
