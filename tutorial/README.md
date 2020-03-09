@@ -4,7 +4,7 @@
 
 # Objectives
 
-These labs provide an insight on the advantages of using Helm over using Kubernetes directly through `kubectl`. When you complete all the labs, you'll:
+These labs provide an insight on the advantages of using Helm v2 over using Kubernetes directly through `kubectl`. When you complete all the labs, you'll:
 * Understand the core concepts of Helm
 * Understand the advantages of deployment using Helm over Kubernetes directly, looking at:
   * Application management
@@ -12,6 +12,10 @@ These labs provide an insight on the advantages of using Helm over using Kuberne
   * Configuration
   * Revision management
   * Repositories and chart sharing
+
+# Helm Status
+
+Refer to [Helm Status](../README.md#helm-status) for more details on Helm releases.
 
 # Prerequisites
 
@@ -28,7 +32,7 @@ It has a client-server architecture with the client called `helm` and the server
 
 A [chart](https://v2.helm.sh/docs/developing_charts) is organized as a collection of files inside of a directory where the directory name is the name of the chart. It contains template YAML files which facilitates providing configuration values at runtime and eliminates the need of modifying YAML files. These templates provide programming logic as they are based on the [Go template language](https://golang.org/pkg/text/template/), functions from the [Sprig lib](https://github.com/Masterminds/sprig) and other [specialized functions](https://v2.helm.sh/docs/developing_charts/#chart-development-tips-and-tricks).
 
-The chart repository is a location where packaged charts can be stored and shared. This is akin to the image repository in Docker. Refer to [The Chart Repository Guide](ihttps://v2.helm.sh/docs/developing_charts/#the-chart-repository-guide) for more details.
+The chart repository is a location where packaged charts can be stored and shared. This is akin to the image repository in Docker. Refer to [The Chart Repository Guide](https://v2.helm.sh/docs/developing_charts/#the-chart-repository-guide) for more details.
 
 # Helm Abstractions
 

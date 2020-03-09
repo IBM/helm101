@@ -10,7 +10,7 @@ In this part of the lab, we should illustrate revision management of `guestbook`
 
 In this part of the lab, we illustrate revision management on the deployed application `guestbook-demo` by using Helm.
 
-With Helm, every time an install, upgrade, or rollback happens, the revision number is incremented by 1. The first revision number is always 1. Helm persists release metadata in configmaps, stored in the Kubernetes cluster. Every time your release changes, it appends that to the existing data. This provides Helm with the capability to rollback to a previous release.
+With Helm, every time an install, upgrade, or rollback happens, the revision number is incremented by 1. The first revision number is always 1. Helm persists release metadata in ConfigMaps(default) or Secrets, stored in the Kubernetes cluster. Every time your release changes, it appends that to the existing data. This provides Helm with the capability to rollback to a previous release.
 
 Let's see how this works in practice.
 
