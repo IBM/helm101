@@ -15,14 +15,7 @@ These labs provide an insight on the advantages of using Helm over using Kuberne
 
 # Helm Status
 
-[Helm v3 was released](https://helm.sh/blog/helm-3-released/) in November 2020. The interface is quite similar but there are major changes to the architecture and internal plumbing of Helm, essentially making it a new product when compared forensically against Helm 2. Check out [what’s in Helm 3](https://developer.ibm.com/technologies/containers/blogs/kubernetes-helm-3/) for more details.
-
-The [Helm 2 Support Plan](https://helm.sh/blog/2019-10-22-helm-2150-released/#helm-2-support-plan) documents a 1 year "maintenance mode" for Helm v2. It states the following:
-- 6 month bug fixes until May 13 2020
-- 6 month security fixes until November 13 2020
-- At 1 year on November 13 2020, support for Helm v2 will end
-
-***Note: This tutorial uses Helm v3. If you are using Helm v2 then go to the [helm-v2](https://github.com/IBM/helm101/tree/helm-v2/tutorial) branch.***
+Refer to [Helm Status](../README.md#helm-status) for more details.
 
 # Prerequisites
 
@@ -46,7 +39,7 @@ The chart repository is a location where packaged charts can be stored and share
 Helm terms :
 * Chart - It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster. A chart is basically a package of pre-configured Kubernetes resources.
 * Config - Contains configuration information that can be merged into a packaged chart to create a releasable object.
-* helm - Helm client. It renders charts into manifest fils. It interacts directly with the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/) server to install, upgrade, query, and remove Kubernetes resources.
+* helm - Helm client. It renders charts into manifest files. It interacts directly with the [Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/) server to install, upgrade, query, and remove Kubernetes resources.
 * Release - An instance of a chart running in a Kubernetes cluster.
 * Repository - Place where charts reside and can be shared with others.
 

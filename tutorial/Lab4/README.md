@@ -28,7 +28,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    
    Should generate an output as follows:
    
-   ```"helmm101" has been added to your repositories```
+   ```"helm101" has been added to your repositories```
    
    You can also search your repositories for charts by running the following command, ```$ helm search repo helm101```:
    
