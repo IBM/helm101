@@ -8,7 +8,7 @@ Create a Kubernetes cluster with [IBM Cloud Kubernetes Service](https://cloud.ib
 
 # Installing the Helm Client (helm)
 
-1. Download the [latest release Helm](https://github.com/helm/helm/releases) for your environment, which in this case is `Linux amd64`.
+1. Download the [latest release of Helm v2](https://github.com/helm/helm/releases) for your environment, which in this case is `Linux amd64`.
 
 2. Unpack it: `$ tar -zxvf helm-v2.<x>.<y>-linux-amd64.tgz`.
 

@@ -6,7 +6,7 @@ A means of sharing is a chart repository, which is a location where packaged cha
 
 # Using charts from a public repository
 
-Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Helm Charts](https://github.com/helm/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://v2.helm.sh/docs/developing_charts/#the-chart-repository-guide) for more details. 
+Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Bitnami Charts](https://github.com/bitnami/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://helm.sh/docs/topics/chart_repository/) for more details.
 
 In this part of the lab, we show you how to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/).
 
@@ -22,7 +22,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    local 	http://127.0.0.1:8879/charts                   
    ```
    
-   Note: The Helm charts repository is installed by default with Helm. It is installed with the repositories `local` and `stable`. You can run the `local` repo using the [helm serve](https://v2.helm.sh/docs/helm/#helm-serve) command. The `stable` repo is located at `https://kubernetes-charts.storage.googleapis.com/`.
+   Note: The Helm charts repository is installed by default with Helm. It is installed with the repositories `local` and `stable`. You can run the `local` repo using the [helm serve](https://v2.helm.sh/docs/helm/#helm-serve) command. The `stable` repo is located at `https://kubernetes-charts.storage.googleapis.com/`. The [Helm Hub](https://hub.helm.sh) provides a centralized search for publicly available distributed charts. Using the hub you can identify the chart with its hosted repository and then add it to your local respoistory list. The [Helm chart repository](https://github.com/helm/charts) like Helm v2 is in "maintenance mode" and will be deprecated by November 13, 2020. See the [project status](https://github.com/helm/charts#status-of-the-project) for more details.
 
 2. Add `helm101` repo:
 
@@ -30,7 +30,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    
    Should generate an output as follows:
    
-   ```"helmm101" has been added to your repositories```
+   ```"helm101" has been added to your repositories```
    
    You can also search your repositories for charts by running the following command, ```$ helm search helm101```:
    

@@ -71,8 +71,8 @@ In this part of the lab, we will deploy the application using the Kubernetes cli
 
 # Deploy the application using Helm
 
-In this part of the lab, we will deploy the application by using Helm. We will set a release name of `guestbook-demo` to distinguish it from the previous deployment. The Helm chart is available [here](../../charts/guestbook). Clone the [Helm 101](https://github.com/IBM/helm101) repo to get the files:
-```$ git clone https://github.com/IBM/helm101``` .
+In this part of the lab, we will deploy the application by using Helm. We will set a release name of `guestbook-demo` to distinguish it from the previous deployment. The Helm chart is available [here](../../charts/guestbook). Clone branch `helm-v2` of the [Helm 101](https://github.com/IBM/helm101/tree/helm-v2) repo to get the files:
+```$ git clone --single-branch --branch helm-v2 https://github.com/IBM/helm101``` .
 
 A chart is defined as a collection of files that describe a related set of Kubernetes resources. We probably then should take a look at the the files before we go and install the chart. The files for the `guestbook` chart are as follows:
 * Chart.yaml: A YAML file containing information about the chart.
