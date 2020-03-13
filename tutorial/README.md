@@ -4,7 +4,7 @@
 
 # Objectives
 
-These labs provide an insight on the advantages of using Helm v2 over using Kubernetes directly through `kubectl`. When you complete all the labs, you'll:
+These labs provide an insight on the advantages of using Helm 2 over using Kubernetes directly through `kubectl`. When you complete all the labs, you'll:
 * Understand the core concepts of Helm
 * Understand the advantages of deployment using Helm over Kubernetes directly, looking at:
   * Application management
@@ -28,7 +28,7 @@ Helm is a tool that streamlines installation and management of Kubernetes applic
 
 ![helm-architecture](images/helm-architecture.png)
 
-It has a client-server architecture with the client called `helm` and the server called `Tiller`. The client is a CLI which users interact with to perform different operations like install/upgrade/delete etc. The client interacts with Tiller and the chart repository. Tiller interacts with the Kubernetes API server. It renders Helm template files into Kubernetes manifest files which it uses to perform operations on the Kubernetes cluster via the Kubernetes API. See the [Helm Architecture](https://v2.helm.sh/docs/architecture/) for more details. 
+Helm 2 has a client-server architecture (Helm 3 has a [client-side architecture](https://github.com/IBM/helm101/tree/master/tutorial#helm-overview)) with the client called `helm` and the server called `Tiller`. The client is a CLI which users interact with to perform different operations like install/upgrade/delete etc. The client interacts with Tiller and the chart repository. Tiller interacts with the Kubernetes API server. It renders Helm template files into Kubernetes manifest files which it uses to perform operations on the Kubernetes cluster via the Kubernetes API. See the [Helm Architecture](https://v2.helm.sh/docs/architecture/) for more details. 
 
 A [chart](https://v2.helm.sh/docs/developing_charts) is organized as a collection of files inside of a directory where the directory name is the name of the chart. It contains template YAML files which facilitates providing configuration values at runtime and eliminates the need of modifying YAML files. These templates provide programming logic as they are based on the [Go template language](https://golang.org/pkg/text/template/), functions from the [Sprig lib](https://github.com/Masterminds/sprig) and other [specialized functions](https://v2.helm.sh/docs/developing_charts/#chart-development-tips-and-tricks).
 
