@@ -1,4 +1,4 @@
-# Introduction to Helm 
+# Introduction to Helm
 
 Helm is a tool that streamlines installation and management of Kubernetes applications. Think of Helm as an apt/yum/homebrew
 for Kubernetes. This repository provides learning materials for Helm.
@@ -16,6 +16,7 @@ details.
 
 The [Helm 2 Support Plan](https://helm.sh/blog/2019-10-22-helm-2150-released/#helm-2-support-plan) documents a 1 year "maintenance
 mode" for Helm v2. It states the following:
+
 - 6 month bug fixes until May 13 2020
 - 6 month security fixes until November 13 2020
 - At 1 year on November 13 2020, support for Helm v2 will end
