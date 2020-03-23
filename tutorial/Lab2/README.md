@@ -80,7 +80,7 @@ In this part of the lab we will update the previously deployed application [Gues
    replicaset.apps/redis-master-5d8b66464f   1         1         1         1h
    ```
 
-   Note: The service type has changed (to `NodePort`) and a new port has been allocated (`31989` in this output case) to the guestbook service. All `redis-slave` resources have been removed.
+   > Note: The service type has changed (to `NodePort`) and a new port has been allocated (`31989` in this output case) to the guestbook service. All `redis-slave` resources have been removed.
 
 1. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service.
 
@@ -95,7 +95,7 @@ Before we start, let's take a few minutes to see how Helm simplifies the process
 
 The complete `redis-slave-service.yaml` file shown below, demonstrates how the file becomes redundant when the `slaveEnabled` flag is disabled and also how the port value is set. There are more examples of templating functionality in the other chart files.
 
-```text
+```yaml
 {{- if .Values.redis.slaveEnabled -}}
 apiVersion: v1
 kind: Service
@@ -162,11 +162,7 @@ Enough talking about the theory. Now let's give it a go!
 
     The `upgrade` command upgrades the app to a specified version of a chart, removes the `redis-slave` resources, and updates the app `service.type` to `NodePort`.
 
-    Check the updates, using:
-
-    ```console
-    kubectl get all --namespace helm-demo
-    ```
+    Check the updates, using `kubectl get all --namespace helm-demo`:
 
     ```console
     $ kubectl get all --namespace helm-demo
