@@ -21,7 +21,7 @@ In this part of the lab we will update the previously deployed application [Gues
    rm redis-slave-deployment.yaml
    ```
 
-   > Note: you can reclaim these files later with a `git checkout -- <filemane>` command, if desired
+   > Note: you can reclaim these files later with a `git checkout -- <filename>` command, if desired
 
 1. Delete the Redis slave service and pods:
 
@@ -38,7 +38,7 @@ In this part of the lab we will update the previously deployed application [Gues
    sed -i.bak 's/LoadBalancer/NodePort/g' guestbook-service.yaml
    ```
 
-   > Note: you can reset the files later with a `git checkout -- <filemane>` command, if desired
+   > Note: you can reset the files later with a `git checkout -- <filename>` command, if desired
 
 1. Delete the guestbook service:
 
@@ -95,7 +95,7 @@ Before we start, let's take a few minutes to see how Helm simplifies the process
 
 The complete `redis-slave-service.yaml` file shown below, demonstrates how the file becomes redundant when the `slaveEnabled` flag is disabled and also how the port value is set. There are more examples of templating functionality in the other chart files.
 
-```text
+```yaml
 {{- if .Values.redis.slaveEnabled -}}
 apiVersion: v1
 kind: Service
