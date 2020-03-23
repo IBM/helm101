@@ -21,7 +21,7 @@ In this part of the lab we will update the previously deployed application [Gues
    rm redis-slave-deployment.yaml
    ```
 
-   > Note: you can reclaim these files later with a `git checkout -- <filemane>` command, if desired
+   > Note: you can reclaim these files later with a `git checkout -- <filename>` command, if desired
 
 1. Delete the Redis slave service and pods:
 
@@ -38,7 +38,7 @@ In this part of the lab we will update the previously deployed application [Gues
    sed -i.bak 's/LoadBalancer/NodePort/g' guestbook-service.yaml
    ```
 
-   > Note: you can reset the files later with a `git checkout -- <filemane>` command, if desired
+   > Note: you can reset the files later with a `git checkout -- <filename>` command, if desired
 
 1. Delete the guestbook service:
 
