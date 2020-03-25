@@ -87,7 +87,7 @@ In this part of the lab, we show you how to install the `guestbook` chart from t
    Check that release deployed as expected as follows:
 
    ```console
-   $ helm3 list -n repo-demo
+   $ helm list -n repo-demo
    NAME           NAMESPACE   REVISION UPDATED                                   STATUS   CHART            APP VERSION
    guestbook-demo repo-demo   1        2020-02-25 15:40:17.627745329 +0000 UTC   deployed guestbook-0.2.1
    ```
