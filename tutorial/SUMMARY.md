@@ -6,11 +6,11 @@
 
 ### Workshop
 
-* [Lab 0](tutorial/Lab0/README.md)
-* [Lab 1](tutorial/Lab1/README.md)
-* [Lab 2](tutorial/Lab2/README.md)
-* [Lab 3](tutorial/Lab3/README.md)
-* [Lab 4](tutorial/Lab4/README.md)
+* [Lab 0](Lab0/README.md)
+* [Lab 1](Lab1/README.md)
+* [Lab 2](Lab2/README.md)
+* [Lab 3](Lab3/README.md)
+* [Lab 4](Lab4/README.md)
 
 ### Resources
 
