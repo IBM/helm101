@@ -16,7 +16,7 @@ In this part of the lab we will update the previously deployed application [Gues
 1. This is an **optional** step that is not technically required to update your running app. The reason for doing this step is "house keeping" - you want to have the correct files for the current configuration that you have deployed. This avoids making mistakes if you have future updates or even rollbacks. In this updated configuration, we remove the Redis slaves. To have the directory match the configuration, move/archive or simply remove the Redis slave files from the guestbook repo tree:
 
    ``` console
-   cd guestbook/v1
+   cd ~/guestbook/v1
    rm redis-slave-service.yaml
    rm redis-slave-deployment.yaml
    ```
@@ -82,7 +82,14 @@ In this part of the lab we will update the previously deployed application [Gues
 
    Note: The service type has changed (to `NodePort`) and a new port has been allocated (`31989` in this output case) to the guestbook service. All `redis-slave` resources have been removed.
 
-1. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service.
+1. View the guestbook
+
+   Get the public IP of one of your nodes:
+   ```console
+   kubectl get nodes -o wide
+   ```
+
+   Navigate to the IP address plus the node port that printed earlier.
 
 ## Scenario 2: Update the application using Helm
 
@@ -200,6 +207,13 @@ Enough talking about the theory. Now let's give it a go!
     ```
 
 1. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service.
+
+   Get the public IP of one of your nodes:
+   ```console
+   kubectl get nodes -o wide
+   ```
+
+   Navigate to the IP address plus the node port that printed earlier.
 
 ## Conclusion
 
