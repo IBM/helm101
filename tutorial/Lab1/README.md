@@ -146,7 +146,7 @@ kubectl create namespace helm-demo
 
    ```console
    kubectl get deployment guestbook-demo --namespace helm-demo
-   ````
+   ```
 
    You should see output similar to the following:
 
@@ -201,11 +201,11 @@ kubectl create namespace helm-demo
 
        ```console
        $ export SERVICE_IP=$(kubectl get svc --namespace helm-demo guestbook-demo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-       $ echo http://$SERVICE_IP:31367
-       http://50.23.5.136:31367
+       $ echo http://$SERVICE_IP
+       http://50.23.5.136
        ```
 
-       In this scenario the URL is `http://50.23.5.136:31367`.
+       Combine the service IP with the port of the service printed earlier. In this scenario the URL is `http://50.23.5.136:31367`.
 
        Note: If no external IP is assigned, then you can get the external IP with the following command:
 
