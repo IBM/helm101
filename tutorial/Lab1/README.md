@@ -8,7 +8,7 @@ The application is the [Guestbook App](https://github.com/IBM/guestbook), which 
 
 In this part of the lab, we will deploy the application using the Kubernetes client `kubectl`. We will use [Version 1](https://github.com/IBM/guestbook/tree/master/v1) of the app for deploying here.
 
-If you already have a copy of the guestbook application installed from the [kube101 lab](https://github.com/IBM/kube101), skip this section and go the `helm` example in [Scenario 2](#scenario-2-deploy-the-application-using-helm)
+If you already have a copy of the guestbook application installed from the [kube101 lab](https://github.com/IBM/kube101), skip this section and go the `helm` example in [Scenario 2](#scenario-2-deploy-the-application-using-helm).
 
 Clone the [Guestbook App](https://github.com/IBM/guestbook) repo to get the files:
 
