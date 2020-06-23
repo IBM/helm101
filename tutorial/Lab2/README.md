@@ -82,7 +82,14 @@ In this part of the lab we will update the previously deployed application [Gues
 
    > Note: The service type has changed (to `NodePort`) and a new port has been allocated (`31989` in this output case) to the guestbook service. All `redis-slave` resources have been removed.
 
-1. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service.
+1. View the guestbook
+
+   Get the public IP of one of your nodes:
+   ```console
+   kubectl get nodes -o wide
+   ```
+
+   Navigate to the IP address plus the node port that printed earlier.
 
 ## Scenario 2: Update the application using Helm
 
@@ -195,7 +202,14 @@ Enough talking about the theory. Now let's give it a go!
     guestbook-demo  helm-demo 2         2020-02-25 14:23:27.06732381 +0000 UTC  deployed  guestbook-0.2.0
     ```
 
-1. View the guestbook as per [Lab1](../Lab1/README.md), using the updated port for the guestbook service.
+1. View the guestbook
+
+   Get the public IP of one of your nodes:
+   ```console
+   kubectl get nodes -o wide
+   ```
+
+   Navigate to the IP address plus the node port that printed earlier.
 
 ## Conclusion
 

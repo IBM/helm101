@@ -6,7 +6,11 @@ The application is the [Guestbook App](https://github.com/IBM/guestbook), which 
 
 ## Scenario 1: Deploy the application using `kubectl`
 
-In this part of the lab, we will deploy the application using the Kubernetes client `kubectl`. We will use [Version 1](https://github.com/IBM/guestbook/tree/master/v1) of the app for deploying here. Clone the [Guestbook App](https://github.com/IBM/guestbook) repo to get the files:
+In this part of the lab, we will deploy the application using the Kubernetes client `kubectl`. We will use [Version 1](https://github.com/IBM/guestbook/tree/master/v1) of the app for deploying here.
+
+If you already have a copy of the guestbook application installed from the [kube101 lab](https://github.com/IBM/kube101), skip this section and go the `helm` example in [Scenario 2](#scenario-2-deploy-the-application-using-helm).
+
+Clone the [Guestbook App](https://github.com/IBM/guestbook) repo to get the files:
 
 ```console
 git clone https://github.com/IBM/guestbook.git
@@ -142,7 +146,7 @@ kubectl create namespace helm-demo
 
    ```console
    kubectl get deployment guestbook-demo --namespace helm-demo
-   ````
+   ```
 
    You should see output similar to the following:
 
@@ -197,11 +201,11 @@ kubectl create namespace helm-demo
 
        ```console
        $ export SERVICE_IP=$(kubectl get svc --namespace helm-demo guestbook-demo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-       $ echo http://$SERVICE_IP:31367
-       http://50.23.5.136:31367
+       $ echo http://$SERVICE_IP
+       http://50.23.5.136
        ```
 
-       In this scenario the URL is `http://50.23.5.136:31367`.
+       Combine the service IP with the port of the service printed earlier. In this scenario the URL is `http://50.23.5.136:31367`.
 
        Note: If no external IP is assigned, then you can get the external IP with the following command:
 
