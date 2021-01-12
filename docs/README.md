@@ -1,4 +1,4 @@
-# Why Helm?
+# Helm 101
 
 [Helm](https://helm.sh/) is often described as the Kubernetes application package manager. So, what does Helm give you over using `kubectl` directly?
 
@@ -13,10 +13,6 @@ These labs provide an insight on the advantages of using Helm over using Kuberne
   * Configuration
   * Revision management
   * Repositories and chart sharing
-
-## Helm Status
-
-Refer to [Helm Status](../README.md#helm-status) for more details.
 
 ## Prerequisites
 
@@ -37,7 +33,7 @@ The chart repository is a location where packaged charts can be stored and share
 
 ## Helm Abstractions
 
-Helm terms :
+Helm terms:
 
 * Chart - It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster. A chart is basically a package of pre-configured Kubernetes resources.
 * Config - Contains configuration information that can be merged into a packaged chart to create a releasable object.

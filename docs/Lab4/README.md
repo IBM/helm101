@@ -1,4 +1,4 @@
-# Lab 4. I like sharing
+# Lab 4. Share Helm Charts
 
 A key aspect of providing an application means sharing with others. Sharing can be direct counsumption (by users or in CI/CD pipelines) or as a dependency for other charts. If people can't find your app then they can't use it.
 
@@ -6,7 +6,7 @@ A means of sharing is a chart repository, which is a location where packaged cha
 
 ## Using charts from a public repository
 
-Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Bitnami Charts](https://github.com/bitnami/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://helm.sh/docs/topics/chart_repository/) for more details. You can learn more about the structure of a chart repository by examining the [chart index file](../../index.yaml) in this lab.
+Helm charts can be available on a remote repository or in a local environment/repository. The remote repositories can be public like [Bitnami Charts](https://github.com/bitnami/charts) or [IBM Helm Charts](https://github.com/IBM/charts), or hosted repositories like on Google Cloud Storage or GitHub. Refer to [Helm Chart Repository Guide](https://helm.sh/docs/topics/chart_repository/) for more details. You can learn more about the structure of a chart repository by examining the [chart index file](https://raw.githubusercontent.com/IBM/helm101/master/repo/stable/index.yaml) in this lab.
 
 In this part of the lab, we show you how to install the `guestbook` chart from the [Helm101 repo](https://ibm.github.io/helm101/).
 

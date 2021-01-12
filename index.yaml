@@ -1,3 +1,6 @@
+# Do not delete this file even though there is a duplicate in the repo/stable folder.
+# For the "helm repo add" command to work with a Helm chart repo in GH, the index
+# file must reside in the root of the repo.
 apiVersion: v1
 entries:
   guestbook:

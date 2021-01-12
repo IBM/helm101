@@ -1,6 +1,6 @@
 # Introduction to Helm
 
-Helm is a tool that streamlines installation and management of Kubernetes applications. Think of Helm as an apt/yum/homebrew
+Helm is a tool that streamlines installation and management of Kubernetes applications. Think of Helm as an apt/yum/homebrew
 for Kubernetes. This repository provides learning materials for Helm.
 
 The default branch of this repo is `master` and it uses the current major release of [Helm](https://helm.sh/) which is v3. If you

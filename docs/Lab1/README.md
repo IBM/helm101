@@ -1,4 +1,4 @@
-# Lab 1. I just want to deploy
+# Lab 1. Deploy with Helm
 
 Let's investigate how Helm can help us focus on other things by letting a chart do the work for us. We'll first deploy an application to a Kubernetes cluster by using `kubectl` and then show how we can offload the work to a chart by deploying the same app with Helm.
 
