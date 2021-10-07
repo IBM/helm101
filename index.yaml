@@ -1,0 +1,31 @@
+# Do not delete this file even though there is a duplicate in the repo/stable folder.
+# For the "helm repo add" command to work with a Helm chart repo in GH, the index
+# file must reside in the root of the repo.
+apiVersion: v1
+entries:
+  guestbook:
+  - apiVersion: v1
+    created: "2020-02-20T14:45:38.552869382Z"
+    description: A Helm chart to deploy Guestbook three tier web application.
+    digest: 0750784ba35fb1ec808d877ea1b61b0869db2ba436950319f22aa8d932899480
+    name: guestbook
+    urls:
+    - https://raw.githubusercontent.com/ibm/helm101/master/repo/stable/guestbook-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v1
+    created: "2019-02-21T14:09:27.965528851Z"
+    description: A Helm chart to deploy Guestbook three tier web application.
+    digest: 74d7c81b83aeea22feb3c4710f86c42b5be61e3783da5fb649edd66f3df55f90
+    name: guestbook
+    urls:
+    - https://raw.githubusercontent.com/ibm/helm101/master/repo/stable/guestbook-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v1
+    created: "2018-05-10T21:50:41.837568406-04:00"
+    description: A Helm chart to deploy Guestbook three tier web application.
+    digest: 7f186687f43008ed68e9e4a09aa4e45586e2d6ed5f85287c64bda3f5a7ea4d12
+    name: guestbook
+    urls:
+    - https://raw.githubusercontent.com/ibm/helm101/master/repo/stable/guestbook-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-02-20T14:45:38.550903527Z"
